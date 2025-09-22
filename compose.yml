@@ -18,6 +18,7 @@ services:
       dockerfile: Dockerfile
     image: constru-control
     ports:
-      - '${APP_PORT:-8000}:8000'
+      - "${PORT:-8000}:${PORT:-8000}"
     environment:
       DATABASE_URL: ${DATABASE_URL}
+      PORT: ${PORT}
