@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
@@ -43,7 +44,7 @@ model AccountsReceivable {
   value                Float
   description          String
   validate             DateTime
-  purchaseDate         DateTime
+  purchaseDate         DateTime?
   paymentDate          DateTime?
   paymentStatus        String
   status               Status       @default(Active)
