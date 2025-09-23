@@ -122,6 +122,19 @@
     <pre>
         docker-compose up --build
     </pre>
+    <h3>Migrar base de dados dentro do docker</h3>
+    <pre>
+        sudo docker compose exec constru-control sh
+    </pre>
+    <p>
+      E DEPOIS
+    </p>
+    <pre>
+       npx prisma migrate deploy
+    </pre>
+
+
+
 
     <h2>Contato</h2>
     <p>Email: pedrotatibano1900@gmail.com</p>
