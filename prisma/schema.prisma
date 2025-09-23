@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Status {
+  Active
+  Inactive
+}
+
+model Users {
+  id                   String       @id @default(uuid()) 
+  internal_id          Int?         @default(autoincrement()) 
+  name                 String
+  email                String       @unique
+  phone                String       @unique
+  createdAt            DateTime     @default(now())
+  status               Status       @default(Active)
+  updateAt             DateTime?    @updatedAt
+}
+
+model Clients {
+  id                   String       @id @default(uuid())
+  internal_id          Int?         @default(autoincrement()) 
+  name                 String
+  email                String       
+  phone                String       
+  document             String 
+  status               Status       @default(Active)
+  createdAt            DateTime     @default(now())
+  updateAt             DateTime?    @updatedAt
+  accountsReceivable   AccountsReceivable[]
+}
+
+model AccountsReceivable {
+  id                   String       @id @default(uuid()) 
+  internal_id          Int?         @default(autoincrement())
+  id_client            String 
+  value                Float
+  description          String
+  validate             DateTime
+  purchaseDate         DateTime
+  paymentDate          DateTime?
+  paymentStatus        String
+  status               Status       @default(Active)
+  createdAt            DateTime     @default(now())
+  updateAt             DateTime?    @updatedAt
+  payments             Payments[]
+
+  client               Clients      @relation(fields: [id_client], references: [id])
+}
+
+model Payments {
+  id                   String       @id @default(uuid())
+  internal_id          Int?         @default(autoincrement())
+  id_receivable        String
+  value                Float
+  paymentMethod        String
+  status               Status       @default(Active)
+  createdAt            DateTime     @default(now())
+  updateAt             DateTime?    @updatedAt
+
+  receivable           AccountsReceivable   @relation(fields: [id_receivable], references: [id])
+}
