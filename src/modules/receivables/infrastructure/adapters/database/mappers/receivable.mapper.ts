@@ -40,7 +40,7 @@ export class ReceivableMapper {
       value: receivable.value,
       description: receivable.description,
       validate: receivable.validate,
-      purchaseDate: receivable.purchaseDate ?? null,
+      purchaseDate: receivable.purchaseDate ?? undefined,
       paymentDate: receivable.paymentDate ?? null,
       status: receivable.status,
       createdAt: receivable.createdAt,
