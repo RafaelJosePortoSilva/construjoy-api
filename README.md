@@ -41,7 +41,7 @@ DB_PASSWORD=teste123
 DB_NAME=contrucontrol
 DB_PORT=5432
 APP_PORT=8000
-DATABASE_URL=postgresql://contrucontrol:teste123@localhost:5432/contrucontrol
+DATABASE_URL=postgresql://contrucontrol:teste123@postgres:5432/contrucontrol
 ```
 
 ## 💻 Executando o projeto
