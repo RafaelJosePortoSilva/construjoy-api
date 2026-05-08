@@ -2,13 +2,17 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY package*.json /
+COPY package*.json ./
 
 RUN yarn
 
 COPY . .
 
-EXPOSE 3000
+RUN npx prisma generate
+
+RUN yarn build
+
+EXPOSE 8000
 
 CMD ["yarn", "start"]
 
